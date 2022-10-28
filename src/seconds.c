@@ -39,7 +39,7 @@ static struct file_operations proc_ops = {
 // 當模組被載入會觸發這個函式 返回0代表成功 其他值代表失敗
 static int proc_init(void)
 {
-    
+    init_jiffies = jiffies;    
     //////////////////////
     ////<在此加入程式碼>////
     /////////////////////
@@ -83,7 +83,8 @@ static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, 
         // 將結果透過sprintf放到buffer中，使用%ld印出
         rv = sprintf(buffer,
                      "Module has been running for %ld seconds\n",
-                     //////////////////////
+                     ((jiffies - init_jiffies)/HZ)
+		     //////////////////////
                      ////<在此加入程式碼>////
                      /////////////////////
                      );
