@@ -8,7 +8,6 @@
 #include <linux/jiffies.h> 
 
 #define BUFFER_SIZE 128
-
 #define PROC_NAME "seconds"
 unsigned long init_jiffies,total_elapsed_time; 
 
