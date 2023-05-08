@@ -7,7 +7,6 @@
 #include <asm/uaccess.h>
 #include <linux/jiffies.h> 
 
-
 #define BUFFER_SIZE 128
 
 #define PROC_NAME "seconds"
@@ -40,16 +39,13 @@ static int proc_init(void)
 	init_jiffies = jiffies;    
         proc_create(PROC_NAME, 0, NULL, &proc_ops);
         printk(KERN_INFO "/proc/%s created\n", PROC_NAME);
-
 	return 0;
 }
 
 
 static void proc_exit(void) {
-    
-     
+         
         remove_proc_entry(PROC_NAME, NULL);
-
         printk( KERN_INFO "/proc/%s removed\n", PROC_NAME);
 }
 
@@ -69,10 +65,8 @@ static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, 
         rv = sprintf(buffer,
                      "Module has been running for %ld seconds\n",
                      ((jiffies - init_jiffies)/HZ));
-
     
         raw_copy_to_user(usr_buf, buffer, rv);
-
         return rv;
 }
 
