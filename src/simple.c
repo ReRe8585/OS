@@ -13,7 +13,7 @@ static int simple_init(void)
     return 0;
 }
 
-// 當模組被移除會觸發這個函式 無返回值
+
 static void simple_exit(void) {
     
     printk(KERN_INFO "exit_jiffies: %lu\n", jiffies);
